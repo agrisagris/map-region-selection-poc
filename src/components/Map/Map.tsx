@@ -11,6 +11,7 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
+  Grid,
 } from "@mui/material";
 
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -50,7 +51,6 @@ const Map: React.FC = () => {
               ...(event === MapEvent.SELECT
                 ? { selected: !parish.selected }
                 : {}),
-              ...(event === MapEvent.SELECT_ALL ? { selected: true } : {}),
               ...(event === MapEvent.HOVER ? { hover: !parish.hover } : {}),
             }
           : parish
@@ -69,8 +69,8 @@ const Map: React.FC = () => {
     parishes.find(({ label }) => label === parishLabel)?.selected;
 
   return (
-    <div className="row">
-      <div className="col-lg-4 col-12">
+    <Grid container spacing={2} padding={2}>
+      <Grid item xs={12} md={6}>
         {treeViewWithMapData.treeView.map((county) => (
           <Accordion
             key={county.label}
@@ -104,11 +104,11 @@ const Map: React.FC = () => {
             </AccordionDetails>
           </Accordion>
         ))}
-      </div>
-      <div className="col-lg-8 col-12">
+      </Grid>
+      <Grid item xs={12} md={6}>
         <MapContainer
           style={{ width: "100%", height: "711px" }}
-          center={[56.54522, 26.9762]}
+          center={[56.781909, 24.317472]}
           zoom={8}
           scrollWheelZoom
           whenCreated={setMap}
@@ -146,8 +146,8 @@ const Map: React.FC = () => {
             </div>
           ))}
         </MapContainer>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
